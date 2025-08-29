@@ -30,7 +30,7 @@ function Cart() {
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6">Shopping Cart</h2>
+      <h2 className="text-3xl font-bold mb-6 ">Shopping Cart</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Cart Items */}

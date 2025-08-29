@@ -6,17 +6,26 @@ import { login } from "../../features/auth/authSlice";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // error state
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Form Validation check
+    if (!email || !password) {
+      setError("Please fill in all fields"); // show error if empty
+      return;
+    }
+
+    setError(""); // clear error if valid
+
     // Dummy user auth
     const userData = { email, name: "Akash Singh" };
     dispatch(login(userData));
 
-    navigate("/"); //  after login redirect to home
+    navigate("/"); // after login redirect to home
   };
 
   return (
@@ -26,6 +35,12 @@ function Login() {
         className="bg-white shadow-md rounded-lg p-8 w-full max-w-md"
       >
         <h2 className="text-xl font-bold mb-4 text-center">Login</h2>
+
+        {/*  Show error message */}
+        {error && (
+          <p className="text-red-500 text-sm mb-3 text-center">{error}</p>
+        )}
+
         <input
           type="email"
           placeholder="Email"
